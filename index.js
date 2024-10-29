@@ -1,3 +1,4 @@
+/*
 const http = require("http");
 const url = require("url");
 
@@ -20,4 +21,30 @@ const server = http.createServer((req, res) => {
 
 server.listen(3000, () => {
   console.log("API Server running on port 3000...");
+});
+*/
+
+// METHOD 2 USING EXPRESS
+
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.status(200).send("<h1>This is the Home page<h1");
+});
+app.get("/about", (req, res) => {
+  res.status(200).send("<h1>This is the About page<h1");
+});
+app.get("/contact-me", (req, res) => {
+  res.status(200).send("<h1>This is the Contact page<h1");
+});
+
+app.use((req, res) => {
+  res.status(404).send("<h1>This page does not exist on server</h1>");
+});
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+  console.log(`App Server running on port ${PORT}`);
 });
